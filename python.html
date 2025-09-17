@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Java & Core Python | Ram Sir | DeviX Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent-java: #ff9f43;
+            --accent-python: #00cec9;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-border: #333;
+            --text-primary: #f5f6fa;
+            --text-secondary: #b2bec3;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --error: #d63031;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--accent-java), var(--accent-python));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.1));
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 3rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background-color: var(--dark-card);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .tab-button:hover:not(.active) {
+            background-color: #2a2a2a;
+        }
+
+        /* Search Box */
+        .search-container {
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .search-box {
+            display: flex;
+            background-color: var(--dark-card);
+            border-radius: 50px;
+            padding: 0.5rem;
+            border: 1px solid var(--dark-border);
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--primary);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-box button:hover {
+            background: var(--secondary);
+        }
+
+        /* Topic Navigation */
+        .topic-nav {
+            position: sticky;
+            top: 80px;
+            background-color: var(--dark-card);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            z-index: 90;
+            border: 1px solid var(--dark-border);
+        }
+
+        .topic-nav h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .topic-link {
+            padding: 0.5rem 1rem;
+            background-color: #2a2a2a;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .topic-link:hover {
+            background-color: var(--primary);
+        }
+
+        /* Course Content */
+        .course-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .topic-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--dark-border);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .topic-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 0.8rem;
+        }
+
+        .topic-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .topic-title {
+            font-size: 1.2rem;
+        }
+
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2d2d2d;
+            padding: 0.5rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            color: var(--success);
+        }
+
+        pre {
+            margin: 0;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .code-explanation {
+            background-color: rgba(0, 184, 148, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Real-life Example */
+        .real-life-example {
+            background-color: rgba(253, 203, 110, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .real-life-example h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--warning);
+        }
+
+        /* Instructor Section */
+        .instructor-section {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.1));
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .instructor-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .instructor-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--dark-card);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin: 3rem 0;
+        }
+
+        .project-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--dark-border);
+        }
+
+        .project-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .project-icon {
+            color: var(--accent-java);
+        }
+
+        .python-project .project-icon {
+            color: var(--accent-python);
+        }
+
+        .project-card ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .project-card li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f0f0f;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .topic-nav {
+                position: relative;
+                top: 0;
+            }
+            
+            .topic-links {
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .course-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .instructor-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease, fadeOut 0.5s ease 2.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-code"></i></div>
+                <h2>DeviX Solutions</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#course-content">Course Content</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#instructor">Instructor</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Master Core Java & Core Python</h1>
+            <p>Become job-ready with our comprehensive programming course. Learn from industry experts, work on real-world projects, and build a portfolio that gets you hired.</p>
+            <a href="#course-content" class="cta-button">Explore Course <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="java">
+                <i class="fab fa-java"></i> Core Java
+            </button>
+            <button class="tab-button" data-tab="python">
+                <i class="fab fa-python"></i> Core Python
+            </button>
+        </div>
+
+       
+
+        <!-- Course Content -->
+        <section id="course-content">
+            <div class="course-content">
+                <!-- Java Topics -->
+                
+                <!-- Java Introduction -->
+                <div class="topic-card java-topic" id="intro">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-coffee"></i></div>
+                        <h3 class="topic-title">Java Introduction</h3>
+                    </div>
+                    <p>Java is a high-level, object-oriented programming language known for its portability and robustness.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>HelloWorld.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> This is the simplest Java program. The <code>main</code> method is the entry point of any Java application. <code>System.out.println</code> prints text to the console.</p>
+                    </div>
+                    <div class="real-life-example">
+                        <h4><i class="fas fa-lightbulb"></i> Real-life Example</h4>
+                        <p>Java is widely used in enterprise applications, Android app development, and large-scale systems like banking applications.</p>
+                    </div>
+                </div>
+
+                <!-- Java Variables & Data Types -->
+                <div class="topic-card java-topic" id="variables">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="topic-title">Variables & Data Types</h3>
+                    </div>
+                    <p>Understand Java variables and the different data types available.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Variables.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>public class Variables {
+    public static void main(String[] args) {
+        // Primitive data types
+        int age = 25;
+        double salary = 50000.50;
+        char grade = 'A';
+        boolean isJavaFun = true;
+        
+        // Reference data type
+        String name = "John Doe";
+        
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Salary: $" + salary);
+        System.out.println("Grade: " + grade);
+        System.out.println("Is Java Fun? " + isJavaFun);
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Java is statically typed, meaning variables must be declared with a specific type. Primitive types include <code>int</code>, <code>double</code>, <code>char</code>, and <code>boolean</code>. <code>String</code> is a class used for text.</p>
+                    </div>
+                </div>
+
+                <!-- Java Operators -->
+                <div class="topic-card java-topic" id="operators">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-calculator"></i></div>
+                        <h3 class="topic-title">Operators</h3>
+                    </div>
+                    <p>Java provides various types of operators for performing operations on variables and values.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Operators.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>public class Operators {
+    public static void main(String[] args) {
+        int a = 10, b = 5;
+        
+        // Arithmetic operators
+        System.out.println("a + b = " + (a + b)); // 15
+        System.out.println("a - b = " + (a - b)); // 5
+        System.out.println("a * b = " + (a * b)); // 50
+        System.out.println("a / b = " + (a / b)); // 2
+        System.out.println("a % b = " + (a % b)); // 0
+        
+        // Relational operators
+        System.out.println("a == b: " + (a == b)); // false
+        System.out.println("a != b: " + (a != b)); // true
+        System.out.println("a > b: " + (a > b));   // true
+        
+        // Logical operators
+        boolean x = true, y = false;
+        System.out.println("x && y: " + (x && y)); // false
+        System.out.println("x || y: " + (x || y)); // true
+        System.out.println("!x: " + (!x));         // false
+        
+        // Assignment operators
+        int c = 10;
+        c += 5; // c = c + 5
+        System.out.println("c = " + c); // 15
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Java operators include arithmetic (+, -, *, /, %), relational (==, !=, >, <), logical (&&, ||, !), and assignment (=, +=, -=) operators.</p>
+                    </div>
+                </div>
+
+                <!-- Java Decision Making -->
+                <div class="topic-card java-topic" id="decision-making">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-code-branch"></i></div>
+                        <h3 class="topic-title">Decision Making Statements</h3>
+                    </div>
+                    <p>Control the flow of your program with decision-making statements.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DecisionMaking.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>public class DecisionMaking {
+    public static void main(String[] args) {
+        int number = 10;
+        
+        // if-else statement
+        if (number > 0) {
+            System.out.println("Number is positive");
+        } else if (number < 0) {
+            System.out.println("Number is negative");
+        } else {
+            System.out.println("Number is zero");
+        }
+        
+        // switch statement
+        int day = 3;
+        String dayName;
+        
+        switch (day) {
+            case 1:
+                dayName = "Monday";
+                break;
+            case 2:
+                dayName = "Tuesday";
+                break;
+            case 3:
+                dayName = "Wednesday";
+                break;
+            case 4:
+                dayName = "Thursday";
+                break;
+            case 5:
+                dayName = "Friday";
+                break;
+            case 6:
+                dayName = "Saturday";
+                break;
+            case 7:
+                dayName = "Sunday";
+                break;
+            default:
+                dayName = "Invalid day";
+        }
+        
+        System.out.println("Day " + day + " is " + dayName);
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Decision-making statements allow your program to make decisions based on conditions. <code>if-else</code> is used for conditional branching, and <code>switch</code> is used for multi-way branching based on a single value.</p>
+                    </div>
+                </div>
+
+                <!-- Java Loops -->
+                <div class="topic-card java-topic" id="loops">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-redo"></i></div>
+                        <h3 class="topic-title">Loops</h3>
+                    </div>
+                    <p>Execute a block of code repeatedly with loops.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Loops.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>public class Loops {
+    public static void main(String[] args) {
+        // for loop
+        System.out.println("For loop:");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Count: " + i);
+        }
+        
+        // while loop
+        System.out.println("\nWhile loop:");
+        int j = 1;
+        while (j <= 5) {
+            System.out.println("Count: " + j);
+            j++;
+        }
+        
+        // do-while loop
+        System.out.println("\nDo-while loop:");
+        int k = 1;
+        do {
+            System.out.println("Count: " + k);
+            k++;
+        } while (k <= 5);
+        
+        // for-each loop (enhanced for loop)
+        System.out.println("\nFor-each loop:");
+        int[] numbers = {1, 2, 3, 4, 5};
+        for (int num : numbers) {
+            System.out.println("Number: " + num);
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Java provides several looping mechanisms: <code>for</code> loops for known iterations, <code>while</code> loops for condition-based iterations, <code>do-while</code> loops that execute at least once, and <code>for-each</code> loops for iterating over arrays/collections.</p>
+                    </div>
+                </div>
+
+                <!-- Java Arrays -->
+                <div class="topic-card java-topic" id="arrays">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="topic-title">Arrays & Collections</h3>
+                    </div>
+                    <p>Store and manipulate multiple values using arrays and collections.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>ArraysAndCollections.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
+public class ArraysAndCollections {
+    public static void main(String[] args) {
+        // Arrays
+        int[] numbers = {1, 2, 3, 4, 5};
+        System.out.println("Array element at index 2: " + numbers[2]);
+        
+        // ArrayList (dynamic array)
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Orange");
+        System.out.println("Fruits: " + fruits);
+        
+        // HashSet (unique elements)
+        HashSet<Integer> uniqueNumbers = new HashSet<>();
+        uniqueNumbers.add(1);
+        uniqueNumbers.add(2);
+        uniqueNumbers.add(1); // Duplicate, won't be added
+        System.out.println("Unique numbers: " + uniqueNumbers);
+        
+        // HashMap (key-value pairs)
+        HashMap<String, Integer> ageMap = new HashMap<>();
+        ageMap.put("John", 25);
+        ageMap.put("Alice", 30);
+        ageMap.put("Bob", 35);
+        System.out.println("John's age: " + ageMap.get("John"));
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Arrays store fixed-size sequential collections of elements. Java Collections Framework provides more flexible data structures like <code>ArrayList</code> (resizable arrays), <code>HashSet</code> (unique elements), and <code>HashMap</code> (key-value pairs).</p>
+                    </div>
+                </div>
+
+                <!-- Java Methods -->
+                <div class="topic-card java-topic" id="functions">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-cogs"></i></div>
+                        <h3 class="topic-title">Methods</h3>
+                    </div>
+                    <p>Organize your code into reusable blocks called methods.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Methods.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>public class Methods {
+    // Method with no parameters and no return value
+    static void greet() {
+        System.out.println("Hello, World!");
+    }
+    
+    // Method with parameters and return value
+    static int add(int a, int b) {
+        return a + b;
+    }
+    
+    // Method overloading (same name, different parameters)
+    static int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    
+    // Variable arguments (varargs)
+    static int sum(int... numbers) {
+        int total = 0;
+        for (int num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+    
+    public static void main(String[] args) {
+        greet();
+        System.out.println("Sum of 5 and 3: " + add(5, 3));
+        System.out.println("Sum of 1, 2 and 3: " + add(1, 2, 3));
+        System.out.println("Sum of 1, 2, 3, 4, 5: " + sum(1, 2, 3, 4, 5));
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Methods are blocks of code that perform specific tasks. They can accept parameters, return values, and be overloaded (same name, different parameters). Varargs allow methods to accept variable numbers of arguments.</p>
+                    </div>
+                </div>
+
+                <!-- Java OOP Concepts -->
+                <div class="topic-card java-topic" id="oop">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                        <h3 class="topic-title">OOP Concepts</h3>
+                    </div>
+                    <p>Object-Oriented Programming concepts in Java: Classes, Objects, Inheritance, Polymorphism, Abstraction, and Encapsulation.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>OOPConcepts.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>// Abstraction using abstract class
+abstract class Animal {
+    // Encapsulation using private fields with public getters/setters
+    private String name;
+    
+    public Animal(String name) {
+        this.name = name;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    // Abstract method (no implementation)
+    public abstract void makeSound();
+    
+    // Concrete method
+    public void sleep() {
+        System.out.println(name + " is sleeping");
+    }
+}
+
+// Inheritance
+class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+    
+    // Polymorphism: method overriding
+    @Override
+    public void makeSound() {
+        System.out.println(getName() + " says: Woof!");
+    }
+}
+
+class Cat extends Animal {
+    public Cat(String name) {
+        super(name);
+    }
+    
+    @Override
+    public void makeSound() {
+        System.out.println(getName() + " says: Meow!");
+    }
+}
+
+public class OOPConcepts {
+    public static void main(String[] args) {
+        // Polymorphism: using parent reference for child objects
+        Animal myDog = new Dog("Buddy");
+        Animal myCat = new Cat("Whiskers");
+        
+        myDog.makeSound();
+        myCat.makeSound();
+        
+        myDog.sleep();
+        myCat.sleep();
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Java is an object-oriented language. Key OOP concepts include:
+                        <ul>
+                            <li><strong>Encapsulation:</strong> Bundling data and methods that operate on that data</li>
+                            <li><strong>Inheritance:</strong> Creating new classes from existing ones</li>
+                            <li><strong>Polymorphism:</strong> Ability to take many forms (method overriding)</li>
+                            <li><strong>Abstraction:</strong> Hiding implementation details</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Java Exception Handling -->
+                <div class="topic-card java-topic" id="exception">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h3 class="topic-title">Exception Handling</h3>
+                    </div>
+                    <p>Handle runtime errors gracefully using exception handling.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>ExceptionHandling.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ExceptionHandling {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        try {
+            System.out.print("Enter a number: ");
+            int num = scanner.nextInt();
+            
+            System.out.print("Enter another number: ");
+            int divisor = scanner.nextInt();
+            
+            int result = num / divisor;
+            System.out.println("Result: " + result);
+            
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Please enter valid integers");
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        } finally {
+            System.out.println("This block always executes");
+            scanner.close();
+        }
+        
+        // Custom exception
+        try {
+            validateAge(15);
+        } catch (InvalidAgeException e) {
+            System.out.println("Caught custom exception: " + e.getMessage());
+        }
+    }
+    
+    static void validateAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be 18 or older");
+        }
+        System.out.println("Valid age: " + age);
+    }
+}
+
+// Custom exception class
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Exception handling allows you to manage runtime errors gracefully. Use <code>try</code> blocks for code that might throw exceptions, <code>catch</code> blocks to handle specific exceptions, and <code>finally</code> blocks for code that always executes. You can also create custom exceptions.</p>
+                    </div>
+                </div>
+
+                <!-- Java File Handling -->
+                <div class="topic-card java-topic" id="file">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-file"></i></div>
+                        <h3 class="topic-title">File Handling</h3>
+                    </div>
+                    <p>Read from and write to files in Java.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>FileHandling.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileHandling {
+    public static void main(String[] args) {
+        // Writing to a file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("example.txt"))) {
+            writer.write("Hello, Java File Handling!");
+            writer.newLine();
+            writer.write("This is a second line.");
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+        
+        // Reading from a file
+        try (BufferedReader reader = new BufferedReader(new FileReader("example.txt"))) {
+            String line;
+            System.out.println("\nReading from file:");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Java provides several classes for file I/O operations. <code>FileWriter</code> and <code>BufferedWriter</code> are used for writing to files, while <code>FileReader</code> and <code>BufferedReader</code> are used for reading from files. The try-with-resources statement automatically closes the resources.</p>
+                    </div>
+                </div>
+
+                <!-- Java Advanced Topics -->
+                <div class="topic-card java-topic" id="advanced">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-rocket"></i></div>
+                        <h3 class="topic-title">Advanced Topics</h3>
+                    </div>
+                    <p>Multithreading, generics, and other advanced Java concepts.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>AdvancedJava.java</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+// Multithreading
+class MyRunnable implements Runnable {
+    private String name;
+    
+    public MyRunnable(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(name + ": " + i);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(name + " interrupted");
+            }
+        }
+        System.out.println(name + " finished");
+    }
+}
+
+// Generics
+class GenericBox<T> {
+    private T content;
+    
+    public void setContent(T content) {
+        this.content = content;
+    }
+    
+    public T getContent() {
+        return content;
+    }
+}
+
+public class AdvancedJava {
+    public static void main(String[] args) {
+        // Multithreading with ExecutorService
+        System.out.println("Multithreading example:");
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        
+        executor.execute(new MyRunnable("Thread 1"));
+        executor.execute(new MyRunnable("Thread 2"));
+        
+        executor.shutdown();
+        
+        // Generics example
+        System.out.println("\nGenerics example:");
+        GenericBox<String> stringBox = new GenericBox<>();
+        stringBox.setContent("Hello Generics");
+        System.out.println("String box: " + stringBox.getContent());
+        
+        GenericBox<Integer> intBox = new GenericBox<>();
+        intBox.setContent(123);
+        System.out.println("Integer box: " + intBox.getContent());
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Advanced Java concepts include:
+                        <ul>
+                            <li><strong>Multithreading:</strong> Executing multiple threads simultaneously for better performance</li>
+                            <li><strong>Generics:</strong> Enabling types (classes and interfaces) to be parameters when defining classes, interfaces, and methods</li>
+                            <li><strong>Executors:</strong> Higher-level API for working with threads</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Python Topics -->
+                
+                <!-- Python Introduction -->
+                <div class="topic-card python-topic hidden" id="intro">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fab fa-python"></i></div>
+                        <h3 class="topic-title">Python Introduction</h3>
+                    </div>
+                    <p>Python is a high-level, interpreted programming language known for its simplicity and readability.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>hello_world.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>print("Hello, World!")</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python programs are simple and concise. The <code>print()</code> function outputs text to the console. Unlike Java, no class definition or main method is required.</p>
+                    </div>
+                    <div class="real-life-example">
+                        <h4><i class="fas fa-lightbulb"></i> Real-life Example</h4>
+                        <p>Python is widely used in data science, web development (Django, Flask), automation, artificial intelligence, and scientific computing.</p>
+                    </div>
+                </div>
+
+                <!-- Python Variables & Data Types -->
+                <div class="topic-card python-topic hidden" id="variables">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="topic-title">Variables & Data Types</h3>
+                    </div>
+                    <p>Learn about Python's dynamic typing system and data structures.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>variables.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Variables in Python
+name = "Alice"
+age = 30
+salary = 75000.50
+is_employed = True
+
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Salary: ${salary}")
+print(f"Employed: {is_employed}")
+
+# Dynamic typing example
+variable = 10
+print(type(variable))  # Output: <class 'int'>
+
+variable = "Now I'm a string"
+print(type(variable))  # Output: <class 'str'>
+
+# Data structures
+# List (mutable, ordered)
+fruits = ["apple", "banana", "cherry"]
+print(fruits[1])  # Output: banana
+
+# Tuple (immutable, ordered)
+colors = ("red", "green", "blue")
+print(colors[0])  # Output: red
+
+# Dictionary (key-value pairs)
+person = {"name": "John", "age": 25, "city": "New York"}
+print(person["name"])  # Output: John
+
+# Set (unique elements, unordered)
+unique_numbers = {1, 2, 3, 2, 1}
+print(unique_numbers)  # Output: {1, 2, 3}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python uses dynamic typing, so you don't need to declare variable types. The type is inferred at runtime. Common types include <code>int</code>, <code>float</code>, <code>str</code>, and <code>bool</code>. Python also has powerful built-in data structures: lists, tuples, dictionaries, and sets.</p>
+                    </div>
+                </div>
+
+                <!-- Python Operators -->
+                <div class="topic-card python-topic hidden" id="operators">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-calculator"></i></div>
+                        <h3 class="topic-title">Operators</h3>
+                    </div>
+                    <p>Python provides various operators for performing operations on variables and values.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>operators.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code>a = 10
+b = 3
+
+# Arithmetic operators
+print(f"a + b = {a + b}")  # 13
+print(f"a - b = {a - b}")  # 7
+print(f"a * b = {a * b}")  # 30
+print(f"a / b = {a / b}")  # 3.333...
+print(f"a % b = {a % b}")  # 1
+print(f"a ** b = {a ** b}")  # 1000 (exponentiation)
+print(f"a // b = {a // b}")  # 3 (floor division)
+
+# Comparison operators
+print(f"a == b: {a == b}")  # False
+print(f"a != b: {a != b}")  # True
+print(f"a > b: {a > b}")    # True
+
+# Logical operators
+x = True
+y = False
+print(f"x and y: {x and y}")  # False
+print(f"x or y: {x or y}")    # True
+print(f"not x: {not x}")      # False
+
+# Assignment operators
+c = 10
+c += 5  # c = c + 5
+print(f"c = {c}")  # 15
+
+# Identity operators
+list1 = [1, 2, 3]
+list2 = [1, 2, 3]
+list3 = list1
+print(f"list1 is list2: {list1 is list2}")  # False (different objects)
+print(f"list1 is list3: {list1 is list3}")  # True (same object)
+
+# Membership operators
+fruits = ["apple", "banana", "cherry"]
+print(f"'apple' in fruits: {'apple' in fruits}")  # True
+print(f"'mango' not in fruits: {'mango' not in fruits}")  # True</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python operators include arithmetic (+, -, *, /, %, **, //), comparison (==, !=, >, <), logical (and, or, not), assignment (=, +=, -=), identity (is, is not), and membership (in, not in) operators.</p>
+                    </div>
+                </div>
+
+                <!-- Python Decision Making -->
+                <div class="topic-card python-topic hidden" id="decision-making">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-code-branch"></i></div>
+                        <h3 class="topic-title">Decision Making Statements</h3>
+                    </div>
+                    <p>Control the flow of your program with decision-making statements.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>decision_making.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># if-elif-else statement
+number = 10
+
+if number > 0:
+    print("Number is positive")
+elif number < 0:
+    print("Number is negative")
+else:
+    print("Number is zero")
+
+# Ternary operator
+age = 20
+status = "Adult" if age >= 18 else "Minor"
+print(f"Status: {status}")
+
+# Match statement (Python 3.10+)
+def http_status(status):
+    match status:
+        case 200:
+            return "OK"
+        case 404:
+            return "Not Found"
+        case 500:
+            return "Internal Server Error"
+        case _:
+            return "Unknown status"
+
+print(f"Status 200: {http_status(200)}")
+print(f"Status 404: {http_status(404)}")
+print(f"Status 999: {http_status(999)}")</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python uses <code>if</code>, <code>elif</code>, and <code>else</code> for conditional branching. The ternary operator provides a concise way to write simple conditional statements. Python 3.10+ introduced the <code>match</code> statement (similar to switch in other languages) for pattern matching.</p>
+                    </div>
+                </div>
+
+                <!-- Python Loops -->
+                <div class="topic-card python-topic hidden" id="loops">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-redo"></i></div>
+                        <h3 class="topic-title">Loops</h3>
+                    </div>
+                    <p>Execute a block of code repeatedly with loops.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>loops.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># for loop
+print("For loop:")
+for i in range(1, 6):
+    print(f"Count: {i}")
+
+# while loop
+print("\nWhile loop:")
+j = 1
+while j <= 5:
+    print(f"Count: {j}")
+    j += 1
+
+# Loop control statements
+print("\nLoop control:")
+for i in range(10):
+    if i == 3:
+        continue  # Skip iteration
+    if i == 7:
+        break     # Exit loop
+    print(i)
+
+# Nested loops
+print("\nNested loops:")
+for i in range(3):
+    for j in range(2):
+        print(f"({i}, {j})")
+
+# Iterating over collections
+print("\nIterating over collections:")
+fruits = ["apple", "banana", "cherry"]
+
+# Iterate by value
+for fruit in fruits:
+    print(fruit)
+
+# Iterate by index
+for i in range(len(fruits)):
+    print(f"Fruit {i}: {fruits[i]}")
+
+# Iterate with enumerate
+for i, fruit in enumerate(fruits):
+    print(f"Fruit {i}: {fruit}")
+
+# Iterate over dictionary
+person = {"name": "John", "age": 25, "city": "New York"}
+for key, value in person.items():
+    print(f"{key}: {value}")</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python provides <code>for</code> loops for iterating over sequences and <code>while</code> loops for condition-based iterations. Loop control statements include <code>break</code> (exit loop) and <code>continue</code> (skip current iteration). You can iterate over various data structures using different techniques.</p>
+                    </div>
+                </div>
+
+                <!-- Python Data Structures -->
+                <div class="topic-card python-topic hidden" id="arrays">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="topic-title">Data Structures</h3>
+                    </div>
+                    <p>Python's built-in data structures: lists, tuples, dictionaries, and sets.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>data_structures.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Lists (mutable, ordered)
+fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")          # Add item
+fruits.insert(1, "mango")        # Insert at index
+fruits.remove("banana")          # Remove item
+fruits.pop()                     # Remove last item
+fruits.sort()                    # Sort list
+print(f"Fruits: {fruits}")
+print(f"Sliced: {fruits[1:3]}")  # Slicing
+
+# Tuples (immutable, ordered)
+colors = ("red", "green", "blue")
+print(f"Colors: {colors}")
+print(f"First color: {colors[0]}")
+
+# Dictionaries (key-value pairs, mutable)
+person = {
+    "name": "John",
+    "age": 25,
+    "city": "New York"
+}
+person["email"] = "john@example.com"  # Add new key-value
+del person["age"]                     # Remove key
+print(f"Person: {person}")
+print(f"Keys: {list(person.keys())}")
+print(f"Values: {list(person.values())}")
+
+# Sets (unique elements, unordered)
+unique_numbers = {1, 2, 3, 2, 1}  # Duplicates are removed
+unique_numbers.add(4)              # Add element
+unique_numbers.remove(2)           # Remove element
+print(f"Unique numbers: {unique_numbers}")
+
+# Set operations
+set_a = {1, 2, 3, 4}
+set_b = {3, 4, 5, 6}
+print(f"Union: {set_a | set_b}")          # {1, 2, 3, 4, 5, 6}
+print(f"Intersection: {set_a & set_b}")   # {3, 4}
+print(f"Difference: {set_a - set_b}")     # {1, 2}
+print(f"Symmetric Difference: {set_a ^ set_b}")  # {1, 2, 5, 6}</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python provides several built-in data structures:
+                        <ul>
+                            <li><strong>Lists:</strong> Mutable, ordered collections</li>
+                            <li><strong>Tuples:</strong> Immutable, ordered collections</li>
+                            <li><strong>Dictionaries:</strong> Key-value pairs, mutable</li>
+                            <li><strong>Sets:</strong> Unique elements, unordered</li>
+                        </ul>
+                        Each has specific methods and use cases.</p>
+                    </div>
+                </div>
+
+                <!-- Python Functions -->
+                <div class="topic-card python-topic hidden" id="functions">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-cogs"></i></div>
+                        <h3 class="topic-title">Functions</h3>
+                    </div>
+                    <p>Organize your code into reusable blocks called functions.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>functions.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Basic function
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Alice"))
+
+# Function with default parameters
+def power(base, exponent=2):
+    return base ** exponent
+
+print(f"5^2 = {power(5)}")       # Uses default exponent
+print(f"2^3 = {power(2, 3)}")    # Overrides default
+
+# Variable arguments (*args and **kwargs)
+def print_args(*args, **kwargs):
+    print("Positional arguments:", args)
+    print("Keyword arguments:", kwargs)
+
+print_args(1, 2, 3, name="John", age=25)
+
+# Lambda functions (anonymous functions)
+square = lambda x: x ** 2
+print(f"Square of 5: {square(5)}")
+
+# Using lambda with built-in functions
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x ** 2, numbers))
+evens = list(filter(lambda x: x % 2 == 0, numbers))
+print(f"Squared: {squared}")
+print(f"Evens: {evens}")
+
+# Function annotations (type hints)
+def add(a: int, b: int) -> int:
+    return a + b
+
+print(f"Add: {add(3, 5)}")
+
+# Recursive function
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+print(f"Factorial of 5: {factorial(5)}")</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Functions in Python are defined using the <code>def</code> keyword. They can have:
+                        <ul>
+                            <li>Default parameters</li>
+                            <li>Variable arguments (<code>*args</code> for positional arguments, <code>**kwargs</code> for keyword arguments)</li>
+                            <li>Lambda functions (anonymous functions)</li>
+                            <li>Type hints (annotations)</li>
+                            <li>Recursion</li>
+                        </ul>
+                        Python also provides built-in functions like <code>map()</code>, <code>filter()</code>, and <code>reduce()</code> for functional programming.</p>
+                    </div>
+                </div>
+
+                <!-- Python OOP Concepts -->
+                <div class="topic-card python-topic hidden" id="oop">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-cube"></i></div>
+                        <h3 class="topic-title">OOP Concepts</h3>
+                    </div>
+                    <p>Object-Oriented Programming concepts in Python: Classes, Objects, Inheritance, Polymorphism, Abstraction, and Encapsulation.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>oop.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Basic class
+class Dog:
+    # Class attribute
+    species = "Canis familiaris"
+    
+    # Initializer (constructor)
+    def __init__(self, name, age):
+        # Instance attributes
+        self.name = name
+        self.age = age
+    
+    # Instance method
+    def description(self):
+        return f"{self.name} is {self.age} years old"
+    
+    # Another instance method
+    def speak(self, sound):
+        return f"{self.name} says {sound}"
+
+# Creating objects
+my_dog = Dog("Buddy", 5)
+print(my_dog.description())
+print(my_dog.speak("Woof!"))
+
+# Inheritance
+class Bulldog(Dog):  # Inherits from Dog
+    def run(self, speed):
+        return f"{self.name} runs at {speed} mph"
+    
+    # Method overriding
+    def speak(self, sound="Woof Woof!"):
+        return super().speak(sound)
+
+my_bulldog = Bulldog("Max", 3)
+print(my_bulldog.run(10))
+print(my_bulldog.speak())
+
+# Encapsulation with private attributes
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance  # Private attribute
+    
+    def deposit(self, amount):
+        self.__balance += amount
+        print(f"Deposited ${amount}. New balance: ${self.__balance}")
+    
+    def withdraw(self, amount):
+        if amount > self.__balance:
+            print("Insufficient funds")
+        else:
+            self.__balance -= amount
+            print(f"Withdrew ${amount}. New balance: ${self.__balance}")
+    
+    # Getter method
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount("John", 1000)
+account.deposit(500)
+account.withdraw(200)
+# print(account.__balance)  # This would cause an error
+print(f"Balance: ${account.get_balance()}")
+
+# Polymorphism
+def animal_sound(animal):
+    print(animal.speak())
+
+animal_sound(my_dog)      # Output: Buddy says Woof!
+animal_sound(my_bulldog)  # Output: Max says Woof Woof!
+
+# Abstract base class
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        pass
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+my_cat = Cat()
+print(my_cat.speak())</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python supports object-oriented programming with:
+                        <ul>
+                            <li><strong>Classes and Objects:</strong> Blueprints for creating objects</li>
+                            <li><strong>Inheritance:</strong> Creating new classes from existing ones</li>
+                            <li><strong>Encapsulation:</strong> Bundling data and methods (using private attributes with <code>__</code>)</li>
+                            <li><strong>Polymorphism:</strong> Ability to take many forms (method overriding)</li>
+                            <li><strong>Abstraction:</strong> Hiding implementation details (using abstract base classes)</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Python Exception Handling -->
+                <div class="topic-card python-topic hidden" id="exception">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h3 class="topic-title">Exception Handling</h3>
+                    </div>
+                    <p>Handle runtime errors gracefully using exception handling.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>exception_handling.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Basic exception handling
+try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+    print(f"Result: {result}")
+except ValueError:
+    print("Error: Please enter a valid integer")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+else:
+    print("Division completed successfully")
+finally:
+    print("This block always executes")
+
+# Raising exceptions
+def validate_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    if age < 18:
+        raise ValueError("Age must be 18 or older")
+    return f"Valid age: {age}"
+
+try:
+    print(validate_age(25))
+    print(validate_age(15))  # This will raise an exception
+except ValueError as e:
+    print(f"Caught exception: {e}")
+
+# Custom exceptions
+class InvalidEmailError(Exception):
+    def __init__(self, email, message="Invalid email format"):
+        self.email = email
+        self.message = message
+        super().__init__(self.message)
+    
+    def __str__(self):
+        return f"{self.message}: {self.email}"
+
+def validate_email(email):
+    if "@" not in email or "." not in email:
+        raise InvalidEmailError(email)
+    return f"Valid email: {email}"
+
+try:
+    print(validate_email("john.example.com"))  # This will raise custom exception
+except InvalidEmailError as e:
+    print(e)
+
+# Using assert for debugging
+def calculate_average(numbers):
+    assert len(numbers) > 0, "List cannot be empty"
+    return sum(numbers) / len(numbers)
+
+print(calculate_average([1, 2, 3, 4, 5]))
+# print(calculate_average([]))  # This will raise AssertionError</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python exception handling uses <code>try</code>, <code>except</code>, <code>else</code>, and <code>finally</code> blocks. You can raise exceptions with <code>raise</code> and create custom exception classes. The <code>assert</code> statement is used for debugging purposes to check if conditions are met.</p>
+                    </div>
+                </div>
+
+                <!-- Python File Handling -->
+                <div class="topic-card python-topic hidden" id="file">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-file"></i></div>
+                        <h3 class="topic-title">File Handling</h3>
+                    </div>
+                    <p>Read from and write to files in Python.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>file_handling.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Writing to a file
+with open("example.txt", "w") as file:
+    file.write("Hello, Python File Handling!\n")
+    file.write("This is a second line.\n")
+    print("Successfully wrote to the file.")
+
+# Reading from a file
+try:
+    with open("example.txt", "r") as file:
+        content = file.read()
+        print("\nReading entire file:")
+        print(content)
+        
+        # Reset file pointer to beginning
+        file.seek(0)
+        
+        print("Reading line by line:")
+        for line in file:
+            print(line.strip())
+except FileNotFoundError:
+    print("File not found")
+
+# Appending to a file
+with open("example.txt", "a") as file:
+    file.write("This line was appended.\n")
+    print("Successfully appended to the file.")
+
+# Working with CSV files
+import csv
+
+# Writing CSV
+with open("data.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Name", "Age", "City"])
+    writer.writerow(["John", 25, "New York"])
+    writer.writerow(["Alice", 30, "London"])
+    print("CSV file created successfully")
+
+# Reading CSV
+with open("data.csv", "r") as file:
+    reader = csv.reader(file)
+    print("\nCSV content:")
+    for row in reader:
+        print(row)
+
+# Working with JSON
+import json
+
+# Writing JSON
+data = {
+    "name": "John",
+    "age": 25,
+    "city": "New York",
+    "hobbies": ["reading", "traveling", "coding"]
+}
+
+with open("data.json", "w") as file:
+    json.dump(data, file, indent=4)
+    print("JSON file created successfully")
+
+# Reading JSON
+with open("data.json", "r") as file:
+    loaded_data = json.load(file)
+    print("\nJSON content:")
+    print(loaded_data)</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Python provides built-in functions for file I/O operations. The <code>open()</code> function is used to open files with different modes ('r' for reading, 'w' for writing, 'a' for appending). The <code>with</code> statement ensures proper resource management. Python also has modules for working with CSV (<code>csv</code>) and JSON (<code>json</code>) files.</p>
+                    </div>
+                </div>
+
+                <!-- Python Advanced Topics -->
+                <div class="topic-card python-topic hidden" id="advanced">
+                    <div class="topic-header">
+                        <div class="topic-icon"><i class="fas fa-rocket"></i></div>
+                        <h3 class="topic-title">Advanced Topics</h3>
+                    </div>
+                    <p>Decorators, generators, comprehensions, threading, and other advanced Python concepts.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>advanced_python.py</span>
+                            <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                        <pre><code># Decorators
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+
+# Generators
+def countdown(n):
+    while n > 0:
+        yield n
+        n -= 1
+
+print("\nCountdown:")
+for i in countdown(5):
+    print(i)
+
+# List comprehensions
+numbers = [1, 2, 3, 4, 5]
+squares = [x ** 2 for x in numbers]
+even_squares = [x ** 2 for x in numbers if x % 2 == 0]
+print(f"\nSquares: {squares}")
+print(f"Even squares: {even_squares}")
+
+# Dictionary comprehensions
+words = ["hello", "world", "python"]
+word_lengths = {word: len(word) for word in words}
+print(f"Word lengths: {word_lengths}")
+
+# Set comprehensions
+unique_lengths = {len(word) for word in words}
+print(f"Unique lengths: {unique_lengths}")
+
+# Multithreading
+import threading
+import time
+
+def print_numbers():
+    for i in range(1, 6):
+        time.sleep(1)
+        print(f"Number: {i}")
+
+def print_letters():
+    for letter in ['a', 'b', 'c', 'd', 'e']:
+        time.sleep(1.5)
+        print(f"Letter: {letter}")
+
+print("\nMultithreading example:")
+thread1 = threading.Thread(target=print_numbers)
+thread2 = threading.Thread(target=print_letters)
+
+thread1.start()
+thread2.start()
+
+thread1.join()
+thread2.join()
+
+# Context managers
+class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+    
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+
+print("\nContext manager example:")
+with FileManager("test.txt", "w") as f:
+    f.write("Context manager test")
+    print("File written using context manager")
+
+# Deep copy vs shallow copy
+import copy
+
+original = [[1, 2, 3], [4, 5, 6]]
+shallow = copy.copy(original)
+deep = copy.deepcopy(original)
+
+original[0][0] = 999
+
+print(f"\nOriginal: {original}")
+print(f"Shallow copy: {shallow}")  # Affected by changes to nested objects
+print(f"Deep copy: {deep}")        # Not affected by changes to nested objects
+
+# Working with modules
+import math
+import random
+from datetime import datetime
+
+print(f"\nMath functions: sqrt(16) = {math.sqrt(16)}, pi = {math.pi}")
+print(f"Random number: {random.randint(1, 100)}")
+print(f"Current datetime: {datetime.now()}")</code></pre>
+                    </div>
+                    <div class="code-explanation">
+                        <p><strong>Explanation:</strong> Advanced Python concepts include:
+                        <ul>
+                            <li><strong>Decorators:</strong> Functions that modify the behavior of other functions</li>
+                            <li><strong>Generators:</strong> Functions that yield values one at a time</li>
+                            <li><strong>Comprehensions:</strong> Concise ways to create lists, dictionaries, and sets</li>
+                            <li><strong>Multithreading:</strong> Running multiple threads concurrently</li>
+                            <li><strong>Context Managers:</strong> Managing resources with <code>with</code> statements</li>
+                            <li><strong>Copy:</strong> Understanding shallow vs deep copy</li>
+                            <li><strong>Modules:</strong> Using Python's standard library modules</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Instructor Section -->
+        <section id="instructor" class="instructor-section">
+            <h2>About Your Instructor</h2>
+            <div class="instructor-content">
+                <div class="instructor-img">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="instructor-info">
+                    <h3>Ram Sir</h3>
+                    <h4>Senior Java/Python Architect</h4>
+                    <p>With over 15 years of industry experience, Ram Sir has worked on numerous enterprise-level Java and Python projects. He is passionate about teaching and has helped thousands of students launch their tech careers.</p>
+                    <p>His expertise includes backend development, system architecture, cloud computing, and DevOps practices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <h2>Capstone Projects</h2>
+            <div class="project-card">
+                <h3><i class="fas fa-project-diagram project-icon"></i> Java Project: E-Commerce Inventory System</h3>
+                <ul>
+                    <li>Design a product class with attributes like ID, name, price, and quantity</li>
+                    <li>Implement CRUD operations for inventory management</li>
+                    <li>Add search and filter functionality</li>
+                    <li>Implement file I/O to persist inventory data</li>
+                    <li>Add user authentication and authorization</li>
+                    <li>Create a GUI using JavaFX or Swing</li>
+                    <li>Implement database connectivity with JDBC</li>
+                </ul>
+            </div>
+            <div class="project-card python-project">
+                <h3><i class="fas fa-project-diagram project-icon"></i> Python Project: Weather CLI Application</h3>
+                <ul>
+                    <li>Use the requests library to fetch data from a weather API</li>
+                    <li>Create a command-line interface using argparse</li>
+                    <li>Display current weather and forecast for a given city</li>
+                    <li>Implement error handling for invalid cities or network issues</li>
+                    <li>Add unit tests for core functionality</li>
+                    <li>Create a GUI version using Tkinter or PyQt</li>
+                    <li>Add data visualization using matplotlib</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3><i class="fas fa-project-diagram project-icon"></i> Advanced Project: Social Media Analytics</h3>
+                <ul>
+                    <li>Collect data from social media APIs (Twitter, Facebook, etc.)</li>
+                    <li>Store data in a database (SQL or NoSQL)</li>
+                    <li>Perform sentiment analysis on posts and comments</li>
+                    <li>Create visualizations of trends and patterns</li>
+                    <li>Build a web dashboard using Flask or Django</li>
+                    <li>Implement user authentication and authorization</li>
+                    <li>Deploy the application to a cloud platform</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>DeviX Solutions</h3>
+                <p>Providing industry-relevant tech education since 2010. Our courses are designed to make you job-ready.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#course-content">Course Content</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#instructor">Instructor</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Tech Park, Bangalore, India</p>
+                <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                <p><i class="fas fa-envelope"></i> info@devixsolutions.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 DeviX Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const javaTopics = document.querySelectorAll('.java-topic');
+            const pythonTopics = document.querySelectorAll('.python-topic');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.dataset.tab;
+                    
+                    // Update active tab
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Show relevant topics
+                    if (tab === 'java') {
+                        javaTopics.forEach(topic => topic.classList.remove('hidden'));
+                        pythonTopics.forEach(topic => topic.classList.add('hidden'));
+                    } else {
+                        javaTopics.forEach(topic => topic.classList.add('hidden'));
+                        pythonTopics.forEach(topic => topic.classList.remove('hidden'));
+                    }
+                });
+            });
+            
+            // Copy button functionality
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const codeBlock = button.parentElement.nextElementSibling;
+                    const textToCopy = codeBlock.textContent;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show toast notification
+                        const toast = document.createElement('div');
+                        toast.classList.add('toast');
+                        toast.textContent = 'Code copied to clipboard!';
+                        document.body.appendChild(toast);
+                        
+                        // Remove toast after animation
+                        setTimeout(() => {
+                            document.body.removeChild(toast);
+                        }, 3000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const activeTab = document.querySelector('.tab-button.active').dataset.tab;
+                const topics = document.querySelectorAll(`.${activeTab}-topic`);
+                
+                topics.forEach(topic => {
+                    const title = topic.querySelector('.topic-title').textContent.toLowerCase();
+                    const description = topic.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        topic.classList.remove('hidden');
+                        topic.classList.add('fade-in');
+                    } else {
+                        topic.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
